@@ -1,1 +1,3 @@
-# ccc-2022
+# Cloudflight Coding Contest 2022
+
+> Team void
