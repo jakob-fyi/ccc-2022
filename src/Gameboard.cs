@@ -15,13 +15,13 @@ public class Gameboard
 
     public Ghost[] Ghosts { get; set; } = { };
 
-    public string[] Moves {get; set;} = {};
+    public string[] Moves { get; set; } = { };
 
     public int PackmanX { get; set; }
     public int PackmanY { get; set; }
 
     public int Coins { get; set; } = 0;
-    
+
     public void Fill(string[] lines)
     {
         // Rows
@@ -45,12 +45,39 @@ public class Gameboard
                 this.Fields[x, y] = elements[x];
             }
         }
-        List<int> numbers = new List<int>( Array.ConvertAll(lines[this.NumberOfRows].Split(' '), int.Parse) );
-        PackmanX = numbers[1] -1 ;
-        PackmanY = numbers[0] -1 ;
-        List<int> numMoves = new List<int>( Array.ConvertAll(lines[this.NumberOfRows+1].Split(' '), int.Parse) );
+        List<int> numbers = new List<int>(Array.ConvertAll(lines[this.NumberOfRows].Split(' '), int.Parse));
+        PackmanX = numbers[1] - 1;
+        PackmanY = numbers[0] - 1;
+        List<int> numMoves = new List<int>(Array.ConvertAll(lines[this.NumberOfRows + 1].Split(' '), int.Parse));
         Moves = new string[numMoves[0]];
         Moves = lines[this.NumberOfRows + 2].ToCharArray().Select(c => c.ToString()).ToArray();
+
+        // Ghosts
+        var indexOfGhostsStart = this.NumberOfRows + 3;
+        var numberOfGhosts = int.Parse(lines[indexOfGhostsStart]);
+
+        this.Ghosts = new Ghost[numberOfGhosts];
+
+        for (int i = 0; i < numberOfGhosts; i++)
+        {
+            var ghostStartpositionIndex = indexOfGhostsStart + 1 + (i * 3);
+            var ghostNumberOfMovesIndex = indexOfGhostsStart + 2 + (i * 3);
+            var ghostMovesIndex = indexOfGhostsStart + 3 + (i * 3);
+
+            var pos = new List<int>(Array.ConvertAll(lines[ghostStartpositionIndex].Split(' '), int.Parse));
+
+            var ghost = new Ghost
+            {
+                posX = pos[1] - 1,
+                posY = pos[0] - 1
+            };
+
+            var ghostNumMoves = new List<int>(Array.ConvertAll(lines[ghostNumberOfMovesIndex].Split(' '), int.Parse));
+            ghost.Moves = new string[ghostNumMoves[0]];
+            ghost.Moves = lines[ghostMovesIndex].ToCharArray().Select(c => c.ToString()).ToArray();
+
+            this.Ghosts[i] = ghost;
+        }
     }
 
     static public Tuple<int, int> move(int x, int y, string move)
@@ -143,9 +170,9 @@ public class Gameboard
 
     public void isLegalMove(string move)
     {
-        
+
     }
-    
+
     public void print()
     {
         for (int y = 0; y < this.NumberOfRows; y++)
