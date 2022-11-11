@@ -16,7 +16,7 @@ public class Gameboard
     public int PackmanY { get; set; }
 
     public int Coins { get; set; } = 0;
-
+    
     public void Fill(string[] lines)
     {
         // Rows
@@ -27,7 +27,9 @@ public class Gameboard
 
         // Columns
         this.NumberOfColumns = lines.Skip(1).First().Length;
+        lines = lines.Skip(1).ToArray();
 
+        Fields = new string[this.NumberOfColumns, this.NumberOfRows];
         // Fields
         for (int y = 0; y < this.NumberOfRows; y++)
         {
@@ -42,7 +44,7 @@ public class Gameboard
 
     public void move(string m)
     {
-        // later check for legal move
+        
         if ( m == GameMoves.Left ) 
         {
             PackmanX--;
@@ -79,4 +81,22 @@ public class Gameboard
             move(m);
         }
     }
+
+    public void isLegalMove(string move)
+    {
+        
+    }
+    
+    public void print()
+    {
+        for (int y = 0; y < this.NumberOfRows; y++)
+        {
+            for (int x = 0; x < this.NumberOfColumns; x++)
+            {
+                Console.Write(this.Fields[x, y]);
+            }
+            Console.WriteLine();
+        }
+    }
+
 }
