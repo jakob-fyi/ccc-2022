@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace teamVoid.CCC2022;
@@ -10,13 +11,13 @@ public class Gameboard
     public string[] Comands { get; set; } = { };
     public string[,] Fields { get; set; } = { };
 
-    public string[] Moves { get; set; } = { };
+    public string[] Moves {get; set;} = {};
 
     public int PackmanX { get; set; }
     public int PackmanY { get; set; }
 
     public int Coins { get; set; } = 0;
-
+    
     public void Fill(string[] lines)
     {
         // Rows
@@ -40,12 +41,16 @@ public class Gameboard
                 this.Fields[x, y] = elements[x];
             }
         }
+        List<int> numbers = new List<int>( Array.ConvertAll(lines[this.NumberOfRows].Split(' '), int.Parse) );
+        PackmanX = numbers[0];
+        PackmanY = numbers[1];
+        Moves = lines[this.NumberOfRows + 1].ToCharArray().Select(c => c.ToString()).ToArray();
     }
 
     public void move(string m)
     {
-
-        if (m == GameMoves.Left)
+        
+        if ( m == GameMoves.Left ) 
         {
             PackmanX--;
         }
@@ -84,7 +89,19 @@ public class Gameboard
 
     public void isLegalMove(string move)
     {
-
+        
+    }
+    
+    public void print()
+    {
+        for (int y = 0; y < this.NumberOfRows; y++)
+        {
+            for (int x = 0; x < this.NumberOfColumns; x++)
+            {
+                Console.Write(this.Fields[x, y]);
+            }
+            Console.WriteLine();
+        }
     }
 
 }
