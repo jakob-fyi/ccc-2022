@@ -15,9 +15,8 @@ public class Worker
 
     public string Run()
     {
-        var gameboard = new Gameboard();
+        var gameboard = new GameboardSolveable();
         gameboard.Fill(this.Lines);
-        // gameboard.PrintBoard();
         bool res = gameboard.performMoves();
         gameboard.PrintBoard();
         this.Output = gameboard.Coins.ToString();
