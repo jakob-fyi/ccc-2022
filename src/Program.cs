@@ -45,7 +45,7 @@ public class Program
             }
 
             var fileName = Path.GetFileNameWithoutExtension(inputFullPath);
-            var outputFullPath = inputFullPath.Replace(fileName, $"{fileName}-result");
+            var outputFullPath = inputFullPath.Replace(".in", ".out");
 
             if (File.Exists(outputFullPath))
             {
@@ -58,7 +58,7 @@ public class Program
 
             // results = results.SelectMany(result => new[] { result, "------------------------------------------------------------" }).ToList();
 
-            // File.WriteAllLines(outputFullPath, );
+            File.WriteAllLines(outputFullPath, new string[] { result });
         }
         // else if (!string.IsNullOrWhiteSpace(input))
         // {
