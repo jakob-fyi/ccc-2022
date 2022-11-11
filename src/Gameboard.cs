@@ -42,8 +42,8 @@ public class Gameboard
             }
         }
         List<int> numbers = new List<int>( Array.ConvertAll(lines[this.NumberOfRows].Split(' '), int.Parse) );
-        PackmanX = numbers[1];
-        PackmanY = numbers[0];
+        PackmanX = numbers[1] -1 ;
+        PackmanY = numbers[0] -1 ;
         List<int> numMoves = new List<int>( Array.ConvertAll(lines[this.NumberOfRows+1].Split(' '), int.Parse) );
         Moves = new string[numMoves[0]];
         Moves = lines[this.NumberOfRows + 2].ToCharArray().Select(c => c.ToString()).ToArray();
@@ -101,6 +101,11 @@ public class Gameboard
             for (int x = 0; x < this.NumberOfColumns; x++)
             {
                 Console.Write(this.Fields[x, y]);
+                Console.Write("(");
+                Console.Write(x);
+                Console.Write(",");
+                Console.Write(y);
+                Console.Write(")");
             }
             Console.WriteLine();
         }
