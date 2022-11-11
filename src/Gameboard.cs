@@ -1,5 +1,7 @@
 using System;
 using System.Linq;
+using GameFigures;
+using GameMoves;
 
 namespace teamVoid.CCC2022;
 
@@ -10,8 +12,12 @@ public class Gameboard
     public string[] Comands { get; set; } = { };
     public string[,] Fields { get; set; } = { };
 
+    public string[] Moves {get; set;} = {};
+
     public int PackmanX { get; set; }
     public int PackmanY { get; set; }
+
+    public int Coins { get; set; } = 0;
 
     public void Fill(string[] lines)
     {
@@ -33,6 +39,38 @@ public class Gameboard
             {
                 this.Fields[x, y] = elements[x];
             }
+        }
+    }
+
+    public void move(string m)
+    {
+        // later check for legal move
+        if ( m == GameMoves.Left ) 
+        {
+            PackmanX--;
+        }
+        else if (m == GameMoves.Right)
+        {
+            PackmanX++;
+        }
+        else if (m == GameMoves.Up)
+        {
+            PackmanY--;
+        }
+        else if (m == GameMoves.Down)
+        {
+            PackmanY++;
+        }
+
+        collectCoin();
+    }
+
+    public void collectCoin()
+    {
+        if (Fields[PackmanX, PackmanY] == Gamefigures.Coin)
+        {
+            Fields[PackmanX, PackmanY] = Gamefigures.Empty;
+            Coins++;
         }
     }
 }
