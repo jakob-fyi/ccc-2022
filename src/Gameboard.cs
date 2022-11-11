@@ -1,7 +1,5 @@
 using System;
 using System.Linq;
-using GameFigures;
-using GameMoves;
 
 namespace teamVoid.CCC2022;
 
@@ -71,6 +69,14 @@ public class Gameboard
         {
             Fields[PackmanX, PackmanY] = Gamefigures.Empty;
             Coins++;
+        }
+    }
+
+    public void performMoves()
+    {
+        foreach (var m in Moves)
+        {
+            move(m);
         }
     }
 }
