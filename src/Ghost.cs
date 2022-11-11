@@ -1,4 +1,6 @@
 
+namespace teamVoid.CCC2022;
+
 public class Ghost
 {
     public int posX { get; set; }
