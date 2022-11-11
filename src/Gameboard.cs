@@ -42,9 +42,11 @@ public class Gameboard
             }
         }
         List<int> numbers = new List<int>( Array.ConvertAll(lines[this.NumberOfRows].Split(' '), int.Parse) );
-        PackmanX = numbers[0];
-        PackmanY = numbers[1];
-        Moves = lines[this.NumberOfRows + 1].ToCharArray().Select(c => c.ToString()).ToArray();
+        PackmanX = numbers[1];
+        PackmanY = numbers[0];
+        List<int> numMoves = new List<int>( Array.ConvertAll(lines[this.NumberOfRows+1].Split(' '), int.Parse) );
+        Moves = new string[numMoves[0]];
+        Moves = lines[this.NumberOfRows + 2].ToCharArray().Select(c => c.ToString()).ToArray();
     }
 
     public void move(string m)
