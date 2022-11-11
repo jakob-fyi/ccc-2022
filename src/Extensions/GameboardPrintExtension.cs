@@ -7,9 +7,13 @@ public static class GameboardprintExtension
 {
     public static void PrintBoard(this Gameboard board)
     {
-        foreach (var row in board.Fields)
+        for (int y = 0; y < board.NumberOfRows; y++)
         {
-            Console.WriteLine(String.Join("", row));
+            for (int x = 0; x < board.NumberOfColumns; x++)
+            {
+                Console.Write(board.Fields[x, y]);
+            }
+            Console.WriteLine();
         }
     }
 }

@@ -17,7 +17,9 @@ public class Worker
     {
         var gameboard = new Gameboard();
         gameboard.Fill(this.Lines);
-        gameboard.print();
+        gameboard.PrintBoard();
+        gameboard.performMoves();
+        this.Output = gameboard.Coins.ToString();
 
         return this.Output;
     }
