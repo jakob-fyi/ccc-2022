@@ -51,26 +51,45 @@ public class Gameboard
         Moves = lines[this.NumberOfRows + 2].ToCharArray().Select(c => c.ToString()).ToArray();
     }
 
-    public void move(string m)
+    static public Tuple<int, int> move(int x, int y, string move)
     {
-        
-        if ( m == GameMoves.Left ) 
+        switch (move)
         {
-            PackmanX--;
+            case "U":
+                y--;
+                break;
+            case "D":
+                y++;
+                break;
+            case "L":
+                x--;
+                break;
+            case "R":
+                x++;
+                break;
         }
-        else if (m == GameMoves.Right)
+        return new Tuple<int, int>(x, y);
+    }
+
+    public bool move(int i)
+    {
+        var m = Moves[i];
+        var res = move(PackmanX, PackmanY, m);
+        PackmanX = res.Item1;
+        PackmanY = res.Item2;
+
+        foreach (Ghost g in Ghosts)
         {
-            PackmanX++;
-        }
-        else if (m == GameMoves.Up)
-        {
-            PackmanY--;
-        }
-        else if (m == GameMoves.Down)
-        {
-            PackmanY++;
+            m = g.Moves[i];
+            res = move(g.posX, g.posY, m);
+            g.posX = res.Item1;
+            g.posY = res.Item2;
         }
 
+        if (checkCollision() )
+        {
+            return false;
+        }
         collectCoin();
     }
 
@@ -83,12 +102,30 @@ public class Gameboard
         }
     }
 
-    public void performMoves()
+    bool checkCollision()
     {
-        foreach (var m in Moves)
+        foreach (Ghost g in Ghosts)
         {
-            move(m);
+            if (g.posX == PackmanX && g.posY == PackmanY)
+            {
+                return true;
+            }
         }
+        return false;
+    }
+
+    public bool performMoves()
+    {
+        int i = 0;
+        for (i = 0; i < Moves.Length; i++)
+        {
+            if ( !move(i) )
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public void isLegalMove(string move)

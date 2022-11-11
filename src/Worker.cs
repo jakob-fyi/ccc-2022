@@ -18,9 +18,10 @@ public class Worker
         var gameboard = new Gameboard();
         gameboard.Fill(this.Lines);
         // gameboard.PrintBoard();
-        gameboard.performMoves();
+        bool res = gameboard.performMoves();
         gameboard.PrintBoard();
         this.Output = gameboard.Coins.ToString();
+        this.Output = res ? " YES" : " NO";
 
         return this.Output;
     }
