@@ -7,4 +7,6 @@ public static class Gamefigures
     public static string Wall = "W";
     public static string Coin = "C";
     public static string Packman = "P";
+
+    public static string Empty = " ";
 }
