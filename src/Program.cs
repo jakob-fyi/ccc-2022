@@ -53,38 +53,39 @@ public class Program
             }
 
             File.Create(outputFullPath).Dispose();
-            var results = File.ReadLines(inputFullPath).Select(line => worker.GetResult(line)).ToList();
+            var lines = File.ReadLines(inputFullPath).ToArray();
+            var result = worker.GetResult(lines);
 
             // results = results.SelectMany(result => new[] { result, "------------------------------------------------------------" }).ToList();
 
-            File.WriteAllLines(outputFullPath, results);
+            // File.WriteAllLines(outputFullPath, );
         }
-        else if (!string.IsNullOrWhiteSpace(input))
-        {
-            Console.WriteLine("Single Run");
-            Console.WriteLine("------------------------------------------------------------");
-            Console.WriteLine($"Input: {input}");
+        // else if (!string.IsNullOrWhiteSpace(input))
+        // {
+        //     Console.WriteLine("Single Run");
+        //     Console.WriteLine("------------------------------------------------------------");
+        //     Console.WriteLine($"Input: {input}");
 
-            var result = worker.GetResult(input);
+        //     var result = worker.GetResult(input);
 
-            Console.WriteLine($"Output: {result}");
-            Console.WriteLine("============================================================");
-        }
-        else
-        {
-            Console.WriteLine("Single Run");
-            Console.WriteLine("------------------------------------------------------------");
+        //     Console.WriteLine($"Output: {result}");
+        //     Console.WriteLine("============================================================");
+        // }
+        // else
+        // {
+        //     Console.WriteLine("Single Run");
+        //     Console.WriteLine("------------------------------------------------------------");
 
-            input = Console.ReadLine() ?? throw new ArgumentNullException("Input is null!");
-            ClearConsoleLine(1);
+        //     input = Console.ReadLine() ?? throw new ArgumentNullException("Input is null!");
+        //     ClearConsoleLine(1);
 
-            Console.WriteLine($"Input: {input}");
+        //     Console.WriteLine($"Input: {input}");
 
-            var result = worker.GetResult(input);
+        //     var result = worker.GetResult(input);
 
-            Console.WriteLine($"Output: {result}");
-            Console.WriteLine("============================================================");
-        }
+        //     Console.WriteLine($"Output: {result}");
+        //     Console.WriteLine("============================================================");
+        // }
     }
 
     public static void ClearConsoleLine(int offset = 0)
