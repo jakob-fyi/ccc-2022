@@ -11,6 +11,8 @@ public class Gameboard
     public string[] Comands { get; set; } = { };
     public string[,] Fields { get; set; } = { };
 
+    public Ghost[] Ghosts { get; set; } = { };
+
     public string[] Moves {get; set;} = {};
 
     public int PackmanX { get; set; }
