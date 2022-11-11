@@ -21,7 +21,7 @@ public class Worker
         bool res = gameboard.performMoves();
         gameboard.PrintBoard();
         this.Output = gameboard.Coins.ToString();
-        this.Output = res ? " YES" : " NO";
+        this.Output += res ? " YES" : " NO";
 
         return this.Output;
     }

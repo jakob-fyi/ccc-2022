@@ -119,6 +119,7 @@ public class Gameboard
         {
             return false;
         }
+        
         collectCoin();
 
         return true;
@@ -144,7 +145,6 @@ public class Gameboard
                 return true;
             }
         }
-
 
         if( Fields[PackmanX, PackmanY] == Gamefigures.Wall )
         {

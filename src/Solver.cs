@@ -1,12 +1,12 @@
-public class Solver
-{
-    public bool [,] Visited { get; set; } = {};
-    public Path p;
+// public class Solver
+// {
+//     public bool [,] Visited { get; set; } = {};
+//     public Path p;
 
 
-    public initialize(Gameboard gameboard)
-    {
+//     public initialize(Gameboard gameboard)
+//     {
         
-        p = new Path();
-    }
-}
+//         p = new Path();
+//     }
+// }
