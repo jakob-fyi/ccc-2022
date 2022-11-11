@@ -11,6 +11,8 @@ public class Gameboard
     public string[] Comands { get; set; } = { };
     public string[,] Fields { get; set; } = { };
 
+    public bool[,] Visited { get; set; } = { };
+
     public Ghost[] Ghosts { get; set; } = { };
 
     public string[] Moves {get; set;} = {};
@@ -91,6 +93,8 @@ public class Gameboard
             return false;
         }
         collectCoin();
+
+        return true;
     }
 
     public void collectCoin()
@@ -102,6 +106,8 @@ public class Gameboard
         }
     }
 
+
+
     bool checkCollision()
     {
         foreach (Ghost g in Ghosts)
@@ -111,6 +117,13 @@ public class Gameboard
                 return true;
             }
         }
+
+
+        if( Fields[PackmanX, PackmanY] == Gamefigures.Wall )
+        {
+            return true;
+        }
+
         return false;
     }
 
