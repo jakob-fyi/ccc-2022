@@ -49,6 +49,22 @@ public class GameboardSolveable
         this.NumberOfMaxMoves = int.Parse(lines[this.NumberOfRows + 1]);
     }
 
+    public int countCoins()
+    {
+        int coins = 0;
+        for (int y = 0; y < this.NumberOfRows; y++)
+        {
+            for (int x = 0; x < this.NumberOfColumns; x++)
+            {
+                if (this.Fields[x, y] == "C")
+                {
+                    coins++;
+                }
+            }
+        }
+        return coins;
+    }
+
     static public Tuple<int, int> move(int x, int y, string move)
     {
         switch (move)

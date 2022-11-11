@@ -13,7 +13,7 @@
             "program": "${workspaceFolder}/src/bin/Debug/net6.0/teamVoid.CCC2022.dll",
             "args": [
                 "--file",
-                "level4_1.in"
+                "level4_example.in"
             ],
             "cwd": "${workspaceFolder}/src",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console

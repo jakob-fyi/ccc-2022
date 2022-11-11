@@ -19,8 +19,11 @@ public class Worker
         gameboard.Fill(this.Lines);
         bool res = gameboard.performMoves();
         gameboard.PrintBoard();
-        this.Output = gameboard.Coins.ToString();
-        this.Output += res ? " YES" : " NO";
+        
+        var solver = new Solver();
+        solver.initialize(gameboard);
+        var p = solver.computePath();
+        this.Output = string.Join("", p.Moves);
 
         return this.Output;
     }
