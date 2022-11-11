@@ -58,7 +58,7 @@ public class Program
 
             // results = results.SelectMany(result => new[] { result, "------------------------------------------------------------" }).ToList();
 
-            File.WriteAllLines(outputFullPath, new string[] { result });
+            File.WriteAllText(outputFullPath, result);
         }
         // else if (!string.IsNullOrWhiteSpace(input))
         // {
